@@ -1,0 +1,90 @@
+<div class="wrapper">
+    <a routerLink="/">Back to list</a>
+    <h2>{{ editMode? 'Edit' : 'New Book'}}</h2>
+    <form
+        id="book-edit"
+        #f="ngForm"
+        (ngSubmit)="onSubmit(f)"
+    >
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input
+         id="title"
+         type="text"
+         class="form-control"
+        name="title"
+        [ngModel]="book?.title"
+        #name="ngModel"
+         />
+    </div>
+
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input
+         id="author"
+         type="text"
+         class="form-control"
+        name="author"
+        [ngModel]="book?.author"
+        #name="ngModel"
+         />
+    </div>
+
+    <div class="form-group">
+        <label for="rating">Rating</label>
+        <input
+         id="rating"
+         type="number"
+         class="form-control"
+        name="rating"
+        min="1"
+        max="5"
+        step=".5"
+        [ngModel]="book?.rating"
+        #name="ngModel"
+         />
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input
+         id="description"
+         type="text"
+         class="form-control"
+        name="description"
+        [ngModel]="book?.description"
+        #name="ngModel"
+         />
+    </div>
+
+    <div class="form-group">
+        <label for="image">Image URL</label>
+        <input
+         id="image"
+         type="text"
+         class="form-control"
+        name="imageUrl"
+        [ngModel]="book?.imageUrl"
+        #name="ngModel"
+         />
+    </div>
+
+    <div class="form-group">
+        <label for="date">Date Read</label>
+        <input
+         id="date"
+         type="date"
+         class="form-control"
+        name="date"
+        [ngModel]="book?.dateRead"
+        #name="ngModel"
+         />
+    </div>
+
+    <button
+            class="btn btn-success"
+            [disabled]="f.invalid"
+            type="submit"
+          >Save</button>
+    </form>
+</div>

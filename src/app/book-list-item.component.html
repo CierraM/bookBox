@@ -1,0 +1,8 @@
+<a class="book-wrapper wrapper" [routerLink]="book.id">
+    <h3>{{book.title}}</h3>
+    <p>{{book.author}}</p>
+    <div class="ratings" >
+        <p *ngFor="let num of nums">★</p>
+    </div>
+</a>
+
