@@ -1,16 +1,33 @@
 <div class="wrapper">
-    <div>
-        <a routerLink="/">Back to list</a>
-        <a routerLink="./edit">Edit</a>
-        <a (click)="onDelete()">Delete</a>
+    <div class="detail-header">
+        <a routerLink="/"><i
+                class="fa fa-chevron-left"
+                style="font-size:36px"
+            ></i></a>
+        <div class="spacer"></div>
+        <a routerLink="./edit"><i
+                class="fa fa-pencil"
+                style="font-size:36px"
+            ></i></a>
+        <a (click)="onDelete()"><i
+                class="fa fa-trash-o"
+                style="font-size:36px"
+            ></i></a>
     </div>
-    <div>
-        <h3>{{book?.title}}</h3>
-        <div>{{book?.rating}}</div>
-
+    <div class="flex">
+        <div>
+            <h3>{{book?.title}}</h3>
+            <p class="author">{{book?.author}}</p>
+            <div class="pic">
+                <img [src]="book?.imageUrl" />
+            </div>
+        </div>
+        <div>
+            <star-rating
+                [starType]="'svg'"
+                [rating]="book.rating"
+            ></star-rating>
+            <p>{{book?.description}}</p>
+        </div>
     </div>
-
-    <p>{{book?.author}}</p>
-    <img [src]="book?.imageUrl" />
-    <p>{{book?.description}}</p>
 </div>

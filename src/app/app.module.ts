@@ -9,7 +9,7 @@ import { BookDetailComponent } from './book-detail.component';
 import { BookEditComponent } from './book-edit.component';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
-
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    StarRatingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

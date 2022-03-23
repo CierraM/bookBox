@@ -4,7 +4,7 @@ import { Book } from './book.model';
 @Component({
   selector: 'app-book-list-item',
   templateUrl: './book-list-item.component.html',
-  styleUrls: ['./book-list-item.component.css']
+  styleUrls: ['./book-list-item.component.scss']
 })
 export class BookListItemComponent implements OnInit, OnChanges {
   @Input() book: Book = { id: '', title: '', author: '', description: '', rating: 0, imageUrl: '', dateRead: new Date() };

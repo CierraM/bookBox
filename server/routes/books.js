@@ -46,7 +46,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-    Book.findOne({ id: req.params.id }).then(book => {
+    Book.findOne({ _id: req.params.id }).then(book => {
         book.title = req.body.title;
         book.author = req.body.author;
         book.rating = req.body.rating;
@@ -54,7 +54,7 @@ router.put('/:id', (req, res, next) => {
         book.imageUrl = req.body.imageUrl;
         book.dateRead = req.body.dateRead
 
-        Book.updateOne({ id: req.params.id }, book).then(result => {
+        Book.updateOne({ _id: req.params.id }, book).then(result => {
             res.status(204).json({
                 message: 'Book updated successfully',
             })
@@ -74,10 +74,13 @@ router.put('/:id', (req, res, next) => {
 })
 
 router.delete('/:id', (req, res, next) => {
-    Book.findOne({ id: req.params.id }).then(book => {
-        Book.deleteOne({ id: req.params.id }).then(result => {
+    Book.findOne({ _id: req.params.id }).then(book => {
+        
+        Book.deleteOne({ _id: req.params.id }).then(result => {
+
             res.status(204).json({
-                message: "Book deleted successfully"
+                message: "Book deleted successfully",
+                 result: result
             })
         }).catch(err => {
             res.status(500).json({

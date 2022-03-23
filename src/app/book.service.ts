@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class BookService {
   private books: Book[];
   booksChangedEvent = new EventEmitter<Book[]>();
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.books = [];
   }
 
@@ -17,7 +17,7 @@ export class BookService {
     this.http.get<{ message: string, books: Book[] }>('http://localhost:3000/books').subscribe((books: any) => {
       //success
       this.books = books.map(book => {
-        return {...book, id: book._id.toString()}
+        return { ...book, id: book._id.toString() }
       })
       this.booksChangedEvent.next(this.books.slice());
     }, (err) => {
@@ -35,19 +35,60 @@ export class BookService {
           selected = book
         }
       })
-      return selected;  
+      return selected;
     }
-    else {
-      let newBook
-      this.http.get('http://localhost:3000/books/' + id).subscribe((book: any) => {
-        newBook = book
-      })
-      return newBook;
-    }
-   
+
   }
 
   deleteBook(id: string) {
+    this.http.delete('http://localhost:3000/books/' + id).subscribe(response => {
+      this.getBooks();
+    })
+  }
 
+  addBook(newBook: Book) {
+    if (!newBook) {
+      return;
+    }
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+    this.http.post<{ message: string, book: Book }>('http://localhost:3000/books',
+    newBook,
+    { headers: headers })
+    .subscribe(
+      (responseData) => {
+        // add new contact to contacts
+        this.books.push(responseData.book);
+        this.booksChangedEvent.next(this.books.slice())
+      }
+    );
+  }
+
+  updateBook(originalBook: Book, newBook: Book) {
+    if (!originalBook || !newBook) {
+      return;
+    }
+    let pos = this.books.indexOf(originalBook)
+
+    if (pos < 0) {
+      return;
+    }
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+    // update database
+    this.http.put('http://localhost:3000/books/' + originalBook.id,
+      newBook, { headers: headers })
+      .subscribe(
+        (response: Response) => {
+          this.books[pos] = newBook;
+          this.booksChangedEvent.next(this.books.slice());
+        }
+    );
+    this.getBooks();
+    
   }
 }
+
+

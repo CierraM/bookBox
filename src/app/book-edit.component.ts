@@ -6,7 +6,7 @@ import { BookService } from './book.service';
 @Component({
   selector: 'app-book-edit',
   templateUrl: './book-edit.component.html',
-  styleUrls: ['./book-edit.component.css']
+  styleUrls: ['./book-edit.component.scss']
 })
 export class BookEditComponent implements OnInit {
   book: Book;
@@ -33,7 +33,14 @@ export class BookEditComponent implements OnInit {
   }
 
   onSubmit(form) {
+    let newBook = new Book(null, form.value.title, form.value.author, form.value.rating, form.value.description, form.value.imageUrl, form.value.dateRead);
+    if (this.editMode) {
+      this.bookService.updateBook(this.originalBook, newBook)
+    } else {
+      this.bookService.addBook(newBook);
 
+    }
+    this.router.navigate(['/'])
   }
 
 }
