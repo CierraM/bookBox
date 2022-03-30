@@ -26,4 +26,8 @@ export class BookDetailComponent implements OnInit {
     this.router.navigate(['/'], {relativeTo: this.route})
   }
 
+  onRatingChange(event) {
+    console.log(event)
+  }
+
 }

@@ -23,11 +23,8 @@
             </div>
         </div>
         <div>
-            <star-rating
-                [starType]="'svg'"
-                [rating]="book.rating"
-            ></star-rating>
-            <p>{{book?.description}}</p>
+        <app-star-display [stars]="book.rating"></app-star-display>
+            <p class="description">{{book?.description}}</p>
         </div>
     </div>
 </div>

@@ -9,7 +9,8 @@ import { BookDetailComponent } from './book-detail.component';
 import { BookEditComponent } from './book-edit.component';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
-import { StarRatingModule } from 'angular-star-rating';
+import { StarDisplayComponent } from './star-display/star-display.component';
+import { BooksFilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,15 @@ import { StarRatingModule } from 'angular-star-rating';
     BookListComponent,
     BookListItemComponent,
     BookDetailComponent,
-    BookEditComponent
+    BookEditComponent,
+    StarDisplayComponent,
+    BooksFilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StarRatingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

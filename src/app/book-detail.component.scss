@@ -53,6 +53,10 @@ img {
     width: 100%;
 }
 
+.description {
+    margin-top: 20px;
+}
+
 @media (max-width: 600px ) {
     .flex {
         flex-direction: column;

@@ -1,90 +1,139 @@
-<div class="wrapper">
-    <a routerLink="/"><i class="fa fa-chevron-left" style="font-size:36px"></i></a>
-    <h2>{{ editMode? 'Edit' : 'New Book'}}</h2>
+]<div class="wrapper">
+    <div class="flex">
+        <a routerLink="/"><i
+                class="fa fa-chevron-left"
+                style="font-size:36px"
+            ></i></a>
+        <h2>{{ editMode? 'Edit' : 'New Book'}}</h2>
+        <div class="spacer"></div>
+
+    </div>
     <form
         id="book-edit"
         #f="ngForm"
         (ngSubmit)="onSubmit(f)"
     >
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input
-         id="title"
-         type="text"
-         class="form-control"
-        name="title"
-        [ngModel]="book?.title"
-        #name="ngModel"
-         />
-    </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input
+            id="title"
+            type="text"
+            class="form-control"
+            name="title"
+            [ngModel]="book?.title"
+            #name="ngModel"
+            />
+            
+        </div>
 
-    <div class="form-group">
-        <label for="author">Author</label>
-        <input
-         id="author"
-         type="text"
-         class="form-control"
-        name="author"
-        [ngModel]="book?.author"
-        #name="ngModel"
-         />
-    </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input
+            id="author"
+            type="text"
+            class="form-control"
+            name="author"
+            [ngModel]="book?.author"
+            #name="ngModel"
+            />
+            
+        </div>
 
-    <div class="form-group">
-        <label for="rating">Rating</label>
-        <input
-         id="rating"
-         type="number"
-         class="form-control"
-        name="rating"
-        min="1"
-        max="5"
-        step=".5"
-        [ngModel]="book?.rating"
-        #name="ngModel"
-         />
-    </div>
+        <div class="form-group rating">
+            <input
+            type="radio"
+            name="rating"
+            id="5"
+            [ngModel]="book?.rating"
+            #name="ngModel"
+            class="star"
+            value="5"
+            >
+            <label for="5"></label>
+            <input
+            type="radio"
+            name="rating"
+            id="4"
+            [ngModel]="book?.rating"
+            #name="ngModel"
+            class="star"
+            value="4"
+            >
+            <label for="4"></label>
+            <input
+            type="radio"
+            name="rating"
+            id="3"
+            [ngModel]="book?.rating"
+            #name="ngModel"
+            class="star"
+            value="3"
+            >
+            <label for="3"></label>
+            <input
+            type="radio"
+            name="rating"
+            id="2"
+            [ngModel]="book?.rating"
+            #name="ngModel"
+            class="star"
+            value="2"
+            >
+            <label for="2"></label>
+            <input
+            type="radio"
+            name="rating"
+            id="1"
+            [ngModel]="book?.rating"
+            #name="ngModel"
+            class="star"
+            value="1"
+            >
+            <label for="1"></label>
+            <p>Rating: </p>
+        </div>
 
-    <div class="form-group">
-        <label for="description">Description</label>
-        <input
-         id="description"
-         type="text"
-         class="form-control"
-        name="description"
-        [ngModel]="book?.description"
-        #name="ngModel"
-         />
-    </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+                rows="4"
+                id="description"
+                type="text"
+                class="form-control"
+                name="description"
+                [ngModel]="book?.description"
+                #name="ngModel"
+            ></textarea>
+        </div>
 
-    <div class="form-group">
-        <label for="image">Image URL</label>
-        <input
-         id="image"
-         type="text"
-         class="form-control"
-        name="imageUrl"
-        [ngModel]="book?.imageUrl"
-        #name="ngModel"
-         />
-    </div>
+        <div class="form-group">
+            <label for="image">Image URL</label>
+            <input
+                id="image"
+                type="text"
+                class="form-control"
+                name="imageUrl"
+                [ngModel]="book?.imageUrl"
+                #name="ngModel"
+            />
+        </div>
 
-    <div class="form-group">
-        <label for="date">Date Read</label>
-        <input
-         id="date"
-         type="date"
-         class="form-control"
-        name="date"
-        [ngModel]="book?.dateRead"
-        #name="ngModel"
-         />
-    </div>
+        <div class="form-group">
+            <label for="dateRead">Date Read</label>
+            <input
+                id="dateRead"
+                type="date"
+                class="form-control"
+                name="dateRead"
+                [ngModel]="book?.dateRead"
+                #name="ngModel"
+            />
+        </div>
 
-    <button
+        <button
             class="btn btn-success"
             [disabled]="f.invalid"
             type="submit"
-          >Save</button>
+        >Save</button>
     </form>
 </div>

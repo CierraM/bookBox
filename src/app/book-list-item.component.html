@@ -9,10 +9,7 @@
 
     </div>
     <div class="ratings">
-        <star-rating
-            [starType]="'svg'"
-            [rating]="book.rating"
-        ></star-rating>
+        <app-star-display [stars]="book.rating"></app-star-display>
     </div>
 </div>
     

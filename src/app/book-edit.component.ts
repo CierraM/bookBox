@@ -26,11 +26,12 @@ export class BookEditComponent implements OnInit {
       if (!this.originalBook) {
         return
       }
+      
       this.editMode = true;
       this.book = JSON.parse(JSON.stringify(this.originalBook));
-
     })
   }
+
 
   onSubmit(form) {
     let newBook = new Book(null, form.value.title, form.value.author, form.value.rating, form.value.description, form.value.imageUrl, form.value.dateRead);

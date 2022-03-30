@@ -1,4 +1,38 @@
-<app-book-list-item *ngFor="let book of books" [book]="book">
-    
-</app-book-list-item>
-<a class="plus gradient-background" routerLink="create">+</a>
+<div class="flex">
+    <div class="filter-wrapper">
+        <div>
+            <h4>Search</h4>
+            <input
+                class="search"
+                type="text"
+                #searchBox
+                placeholder="Enter a search value"
+                (keyup)="search(searchBox.value)"
+            />
+
+        </div>
+        <div>
+            <h4>Sort By</h4>
+            <select #sortby name="sortby" (change)="sort(sortby.value)">
+                <option value="none" selected>Select One</option>
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="rating">Rating</option>
+            </select>
+
+        </div>
+    </div>
+    <div>
+        <app-book-list-item
+            *ngFor="let book of books | booksFilter: term; let id"
+            [book]="book"
+        >
+
+        </app-book-list-item>
+
+    </div>
+</div>
+<a
+    class="plus gradient-background"
+    routerLink="create"
+>+</a>

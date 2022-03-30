@@ -35,6 +35,7 @@ export class BookService {
           selected = book
         }
       })
+
       return selected;
     }
 
