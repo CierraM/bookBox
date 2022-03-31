@@ -22,7 +22,10 @@ export class BookEditComponent implements OnInit {
         this.editMode = false;
         return;
       }
-      this.originalBook = this.bookService.getBook(params['id']);
+      this.bookService.getBook(params['id']);
+      this.bookService.bookChangedEvent.subscribe(book => {
+        this.book = book;
+      })
       if (!this.originalBook) {
         return
       }

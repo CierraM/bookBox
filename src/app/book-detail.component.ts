@@ -16,7 +16,10 @@ export class BookDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.book = this.bookService.getBook(params['id'])
+      this.bookService.getBook(params.id);
+    }) 
+    this.bookService.bookChangedEvent.subscribe(book => {
+      this.book = book;
     })
 
   }
@@ -26,8 +29,5 @@ export class BookDetailComponent implements OnInit {
     this.router.navigate(['/'], {relativeTo: this.route})
   }
 
-  onRatingChange(event) {
-    console.log(event)
-  }
 
 }

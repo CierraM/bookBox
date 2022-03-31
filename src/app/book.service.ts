@@ -8,7 +8,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class BookService {
   private books: Book[];
+  private selectedBook: Book;
   booksChangedEvent = new EventEmitter<Book[]>();
+  bookChangedEvent = new EventEmitter<Book>();
   constructor(private http: HttpClient) {
     this.books = [];
   }
@@ -28,17 +30,14 @@ export class BookService {
   }
 
   getBook(id: string): any {
-    let selected;
     if (this.books.length > 0) {
-      this.books.forEach(book => {
-        if (book.id === id) {
-          selected = book
-        }
-      })
-
-      return selected;
+      this.selectedBook = this.books.find(book => book.id === id);
+      this.bookChangedEvent.emit(this.selectedBook);
     }
-
+    this.http.get('http://localhost:3000/books/' + id).subscribe((book: any) => {
+      this.selectedBook = book;
+      this.bookChangedEvent.emit(this.selectedBook);
+    })
   }
 
   deleteBook(id: string) {

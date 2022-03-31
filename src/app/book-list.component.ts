@@ -26,6 +26,7 @@ export class BookListComponent implements OnInit {
   sort(value: string) {
     if (value === 'title') {
       this.books.sort((a, b) => {
+        
         if (a.title < b.title) {
           return -1;
         }
