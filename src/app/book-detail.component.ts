@@ -4,6 +4,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Book } from './book.model';
 import { BookService } from './book.service';
 
+
+
 @Component({
   selector: 'app-book-detail',
   templateUrl: './book-detail.component.html',
@@ -19,13 +21,14 @@ export class BookDetailComponent implements OnInit {
       this.bookService.getBook(params.id);
     }) 
     this.bookService.bookChangedEvent.subscribe(book => {
+ 
       this.book = book;
     })
 
   }
 
   onDelete() {
-    this.bookService.deleteBook(this.book.id)
+    this.bookService.deleteBook(this.book._id)
     this.router.navigate(['/'], {relativeTo: this.route})
   }
 

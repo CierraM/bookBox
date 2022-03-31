@@ -78,6 +78,7 @@
             #name="ngModel"
             class="star"
             value="2"
+
             >
             <label for="2"></label>
             <input
@@ -125,11 +126,11 @@
                 type="date"
                 class="form-control"
                 name="dateRead"
-                [ngModel]="book?.dateRead"
+                [ngModel]="book?.dateRead | date: 'YYYY-MM-dd'"
                 #name="ngModel"
             />
         </div>
-
+        
         <button
             class="btn btn-success"
             [disabled]="f.invalid"

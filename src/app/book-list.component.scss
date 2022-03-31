@@ -65,3 +65,13 @@ select {
   height:30px;
   width: 200px;
 }
+
+@media (max-width: 540px) {
+  .filter-wrapper {
+    flex-direction: column;
+  }
+}
+
+p {
+  color: white;
+}

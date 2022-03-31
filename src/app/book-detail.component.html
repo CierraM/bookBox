@@ -18,6 +18,7 @@
         <div>
             <h3>{{book?.title}}</h3>
             <p class="author">{{book?.author}}</p>
+            <p *ngIf="book?.dateRead">Last read: {{book?.dateRead | date: 'YYYY-MM-dd'}}</p>
             <div class="pic">
                 <img [src]="book?.imageUrl" />
             </div>

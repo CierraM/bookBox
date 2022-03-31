@@ -23,12 +23,12 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     const book = new Book({
-        title: req.body.title,
-        author: req.body.author,
-        rating: req.body.rating,
-        description: req.body.description,
-        imageUrl: req.body.imageUrl,
-        dateRead: req.body.dateRead
+        title: req.body.title || 'Untitled',
+        author: req.body.author || 'Anonymous',
+        rating: req.body.rating || 0,
+        description: req.body.description || '',
+        imageUrl: req.body.imageUrl || '',
+        dateRead: req.body.dateRead || ''
     })
 
     book.save().then(book => {
@@ -47,12 +47,12 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
     Book.findOne({ _id: req.params.id }).then(book => {
-        book.title = req.body.title;
-        book.author = req.body.author;
+        book.title = req.body.title || '';
+        book.author = req.body.author || '';
         book.rating = req.body.rating;
-        book.description = req.body.description;
-        book.imageUrl = req.body.imageUrl;
-        book.dateRead = req.body.dateRead
+        book.description = req.body.description || '';
+        book.imageUrl = req.body.imageUrl || '';
+        book.dateRead = req.body.dateRead || '';
 
         Book.updateOne({ _id: req.params.id }, book).then(result => {
             res.status(204).json({

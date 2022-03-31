@@ -10,7 +10,7 @@ export class BooksFilterPipe implements PipeTransform {
     let filteredContacts: Book[] = [];
 
     books.forEach(book => {
-      if (book.title.toLowerCase().includes(term) || book.author.toLowerCase().includes(term)) {
+      if (book?.title.toLowerCase().includes(term) || book?.author.toLowerCase().includes(term)) {
         filteredContacts.push(book);
       }
     })

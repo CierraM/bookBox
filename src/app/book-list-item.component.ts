@@ -7,7 +7,7 @@ import { Book } from './book.model';
   styleUrls: ['./book-list-item.component.scss']
 })
 export class BookListItemComponent implements OnInit, OnChanges {
-  @Input() book: Book = { id: '', title: '', author: '', description: '', rating: 0, imageUrl: '', dateRead: new Date() };
+  @Input() book: Book = { _id: '', title: '', author: '', description: '', rating: 0, imageUrl: '', dateRead: new Date() };
   nums: string[] = [];
   
   constructor() { 

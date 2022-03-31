@@ -18,10 +18,8 @@ export class BookService {
   getBooks() {
     this.http.get<{ message: string, books: Book[] }>('http://localhost:3000/books').subscribe((books: any) => {
       //success
-      this.books = books.map(book => {
-        return { ...book, id: book._id.toString() }
-      })
-      this.booksChangedEvent.next(this.books.slice());
+      this.books = books
+      this.booksChangedEvent.emit(this.books.slice());
     }, (err) => {
       //error
       console.log(err)
@@ -31,7 +29,7 @@ export class BookService {
 
   getBook(id: string): any {
     if (this.books.length > 0) {
-      this.selectedBook = this.books.find(book => book.id === id);
+      this.selectedBook = this.books.find(book => book._id === id);
       this.bookChangedEvent.emit(this.selectedBook);
     }
     this.http.get('http://localhost:3000/books/' + id).subscribe((book: any) => {
@@ -67,26 +65,24 @@ export class BookService {
 
   updateBook(originalBook: Book, newBook: Book) {
     if (!originalBook || !newBook) {
-      return;
-    }
-    let pos = this.books.indexOf(originalBook)
-
-    if (pos < 0) {
+      console.log('no book to update');
       return;
     }
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     // update database
-    this.http.put('http://localhost:3000/books/' + originalBook.id,
+    this.http.put('http://localhost:3000/books/' + originalBook._id,
       newBook, { headers: headers })
       .subscribe(
         (response: Response) => {
-          this.books[pos] = newBook;
-          this.booksChangedEvent.next(this.books.slice());
+          
+          this.booksChangedEvent.emit(this.books.slice());
+          this.getBooks();
         }
     );
     this.getBooks();
+
     
   }
 }

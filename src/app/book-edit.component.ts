@@ -22,16 +22,20 @@ export class BookEditComponent implements OnInit {
         this.editMode = false;
         return;
       }
+
       this.bookService.getBook(params['id']);
       this.bookService.bookChangedEvent.subscribe(book => {
-        this.book = book;
+        this.originalBook = book;
+
+        
+        if (!this.originalBook) {
+          return
+        }
+        
+        this.editMode = true;
+        this.book = JSON.parse(JSON.stringify(this.originalBook));
       })
-      if (!this.originalBook) {
-        return
-      }
-      
-      this.editMode = true;
-      this.book = JSON.parse(JSON.stringify(this.originalBook));
+
     })
   }
 
@@ -39,8 +43,9 @@ export class BookEditComponent implements OnInit {
   onSubmit(form) {
     let newBook = new Book(null, form.value.title, form.value.author, form.value.rating, form.value.description, form.value.imageUrl, form.value.dateRead);
     if (this.editMode) {
-      this.bookService.updateBook(this.originalBook, newBook)
+      this.bookService.updateBook(this.originalBook, newBook);
     } else {
+      console.log('adding new book that didnt already exist')
       this.bookService.addBook(newBook);
 
     }
